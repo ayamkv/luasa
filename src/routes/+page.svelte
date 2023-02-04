@@ -5,7 +5,16 @@
     export let data;
     const { messages } = data;
     console.log(data)
+    // function dateFormat(text) {
+    //     dateText = String(text)
+    //     dateReplace = dateText.replace('T',' ')
+    //     date = String(dateReplace.slice(0, -1));
 
+    //     return {
+    //         date
+    //     }
+
+    // }
 </script>
 
 <svelte:head>
@@ -18,7 +27,7 @@
 <div class="hero h-1/2 pt-25 bg-base-200">
     <div class="hero-content text-center">
       <div class="max-w-md mt-10 mb-1">
-        <h1 class="text-6xl font-bold">🙊 Luasa</h1>
+        <h1 class="text-6xl font-bold text-primary-content drop-shadow-xl hover:text-primary transition-all">🙊 Luasa</h1>
         <p class="pt-6">
             say what you need to say. <br> 
             💯 privacy. no bullshit.
@@ -50,19 +59,21 @@
   </div>
 
 <div class="flex flex-col justify-center items-center my-5">
-    <h1 class="text-3xl font-bold mt-5 mb-10">🗣️ Suara Rakyat</h1>
+    <h1 class="text-3xl font-bold mt-5 mb-10 text-secondary-content drop-shadow-sm">🗣️ Suara Rakyat</h1>
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
         
 {#each messages as msg}
-    <div class="card w-60 bg-base-200 shadow-xl">
+    <div class="card w-60 bg-base-200 shadow-xl hover:shadow-sm transition-all">
         <div class="card-body break-words">
 
         
         <h3 class="card-title"><b>to :</b> {msg.to}</h3>
-        <p class="text-xs">{msg.messages}</p>
-        <!-- <div class="card-actions justify-end">
-            <button class="btn btn-xs btn-outline">🗑️ </button>
-          </div> -->
+        <p class="text-sm">{msg.messages}</p>
+        <div class="card-actions justify-end">
+            
+            <p class="text-xs text-right">{msg.date_created}</p>
+            <!-- <button class="btn btn-xs btn-outline">🗑️ </button> -->
+          </div>
      </div>
     </div>
 {/each}
