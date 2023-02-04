@@ -64,7 +64,7 @@
         
 {#each messages as msg}
     <div class="card w-60 bg-base-200 shadow-xl hover:shadow-sm transition-all">
-        <div class="card-body break-words">
+        <div class="card-body break-words whitespace-pre-wrap">
 
         
         <h3 class="card-title"><b>to :</b> {msg.to}</h3>
