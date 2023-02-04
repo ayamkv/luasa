@@ -8,6 +8,9 @@
 
 </script>
 
+<svelte:head>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</svelte:head>
 
 
 
@@ -32,6 +35,8 @@
                     <span class="label-text font-bold my-0">Message : </span>
                   </label>
                 <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="say it.." name="message" cols="5" rows="5" maxlength="150" required></textarea>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAACVH5V0v4_SuNes" data-callback="javascriptCallback" theme="dark"></div>
+
                 <button type="submit" class="btn btn-primary w-64 rounded-full mx-auto shadow-xl my-2" >
                     Submit
                 </button>
