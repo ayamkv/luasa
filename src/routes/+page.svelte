@@ -18,12 +18,13 @@
     //     }
 
     // }
+    let loading = false
     
     const addMessage = () => {
-      
+      loading = true
       return async ({ update }) => {
+        loading = false
         await update();
-        await invalidateAll();
       }
     }
 
@@ -64,13 +65,19 @@
                   </label>
                 <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="say it.." name="message" cols="5" rows="3" maxlength="150" required></textarea>
                 <div class="cf-turnstile" data-sitekey="0x4AAAAAAACVH5V0v4_SuNes" data-callback="javascriptCallback" theme="dark"></div>
-
+               
+               
                 <button type="submit" class="btn btn-primary w-64 rounded-full mx-auto shadow-xl my-2 gap-2" >
                     Submit
-                    
+                    {#if loading}
+                    <iconify-icon icon="line-md:uploading-loop"></iconify-icon>
+                    {/if}
+                    {#if !loading}
                     <iconify-icon icon="ph:paper-plane-tilt-bold"></iconify-icon>
+                    {/if}
                     
                 </button>
+                
             </form>
         </div>
       </div>
