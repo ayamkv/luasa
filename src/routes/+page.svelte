@@ -24,13 +24,13 @@
     const addMessage = () => {
       
       loading = true
+      
       return async ({ update }) => {
         await update({ reset: true });
-        invalidateAll();
         loading = false
+        invalidateAll();
       }
     }
-
     onMount(() => {
       visible = true;
       
