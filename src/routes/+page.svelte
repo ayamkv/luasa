@@ -23,9 +23,9 @@
     const addMessage = () => {
       loading = true
       return async ({ update }) => {
-        form.reset();
+        
         loading = false
-        await update();
+        await update({ reset: true });
       }
     }
 
