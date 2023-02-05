@@ -30,8 +30,6 @@
         loading = false
       }
     }
-let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
-
 
     onMount(() => {
       visible = true;
@@ -48,15 +46,6 @@ let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 
 
 {#if visible}
-
-{#if loading}
-<div class="toast toast-top toast-end">
-  <div class="alert alert-info">
-    <div>
-      <span>sending..</span>
-    </div>
-  </div>
-{/if}
 
 <div class="hero h-1/2 pt-25 bg-base-200">
     <div in:fly="{{ y:-100, duration: 1200 }}" class="hero-content text-center">
