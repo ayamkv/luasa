@@ -19,6 +19,7 @@
 </script>
 
 <svelte:head>
+    <link rel="icon" href="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Ghost/3D/ghost_3d.png">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </svelte:head>
 
@@ -65,7 +66,7 @@
         
 {#each messages as msg}
     <div class="card w-60 bg-base-200 shadow-xl hover:shadow-sm transition-all">
-        <div class="card-body break-words">
+        <div class="card-body break-words whitespace-pre-wrap">
 
         
         <h3 class="card-title"><b>to :</b> <span class="text-sm">{msg.to}</span></h3>
