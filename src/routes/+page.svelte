@@ -20,7 +20,7 @@
 
     // }
     let loading = false
-    
+    // use later
   //  const addMessage = () => {
       
  //     loading = true
@@ -60,16 +60,7 @@
         
         <div class="flex flex-col justify-center items-center bg-base-200 pt-0">
 
-            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance={() => {
-            loading = true;
-            
-            return async ({ result, update }) => {
-            await update();
-            loading = false;
-            
-            }
-            }
-            >
+            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance>
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>
