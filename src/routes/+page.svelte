@@ -6,7 +6,7 @@
     import { fly, fade } from 'svelte/transition';	
     let visible = false;
     export let data;
-    $: ({ messages } = data);
+//    $: ({ messages } = data);
 //    const { messages } = data;
     console.log(data)
     // function dateFormat(text) {
@@ -30,23 +30,13 @@
         loading = false
       }
     }
+let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 
-    onMount(() => {
+
+    onMount(async () => {
       visible = true;
-      const load = async ({ fetch }) => {
-
-     const fetchMsgData = async () => {
-        const msgRes = await fetch(`${publicUrl}/items/msg?sort=-date_created`)
-        const msgData = await msgRes.json()
-        return msgData.data
-    }
-
-
-    return {
-        messages: fetchMsgData()
-        
-    }
-}
+      const res = await fetch(`${publicUrl}/items/msg?sort=-date_created`);
+      $: messages = await res.json();
 
     });
   
