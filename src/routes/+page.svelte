@@ -94,7 +94,7 @@
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
         
 {#each messages as msg, i(msg.id)}
-    <div in:fly="{{ y: 200, duration: 2000, delay: 80 * i }}" id="{msg.id}" class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]">
+    <div in:fly="{{ y: 200, duration: 2000, delay: 80 * i }}" id="{msg.id}" class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color}">
         <div class="card-body break-words whitespace-pre-wrap px-6 pt-5 pb-5">
 
         
