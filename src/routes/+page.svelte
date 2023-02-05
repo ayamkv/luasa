@@ -1,4 +1,5 @@
 <script>
+    import Date from "./Date.svelte";
     import { onMount } from "svelte";
     import {fly, fade } from 'svelte/transition';	
 
@@ -67,11 +68,12 @@
         <div class="card-body break-words">
 
         
-        <h3 class="card-title"><b>to :</b> {msg.to}</h3>
+        <h3 class="card-title"><b>to :</b> <span class="text-sm">{msg.to}</span></h3>
         <p class="text-sm">{msg.messages}</p>
         <div class="card-actions justify-end">
             
-            <p class="text-xs text-right">{msg.date_created}</p>
+            <!-- <p class="text-xs text-right">{msg.date_created}</p> -->
+            <Date name={msg.date_created} />
             <!-- <button class="btn btn-xs btn-outline">🗑️ </button> -->
           </div>
      </div>
