@@ -1,4 +1,5 @@
 <script>
+    import { enhance } from '$app/forms';
     import Date from "./Date.svelte";
     import 'iconify-icon';
     import { onMount } from "svelte";
@@ -45,7 +46,7 @@
         
         <div class="flex flex-col justify-center items-center bg-base-200 pt-0">
 
-            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" >
+            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance>
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>
