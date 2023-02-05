@@ -21,16 +21,16 @@
     // }
     let loading = false
     
-    const addMessage = () => {
+  //  const addMessage = () => {
       
-      loading = true
+ //     loading = true
       
-      return async ({ update }) => {
-        await update({ reset: true });
-        loading = false
-        invalidateAll();
-      }
-    }
+ //     return async ({ update }) => {
+//        await update({ reset: true });
+ //       loading = false
+//        invalidateAll();
+//      }
+ //   }
     onMount(() => {
       visible = true;
       
@@ -60,7 +60,16 @@
         
         <div class="flex flex-col justify-center items-center bg-base-200 pt-0">
 
-            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance={addMessage}>
+            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance={() => {
+            loading = true;
+            
+            return async ({ result, update }) => {
+            await update();
+            loading = false;
+            
+            }
+            }
+            >
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>
