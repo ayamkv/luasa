@@ -22,18 +22,32 @@
     let loading = false
     
     const addMessage = () => {
+      
       loading = true
       return async ({ update }) => {
         await update({ reset: true });
-        loading = false
-       
         invalidateAll();
+        loading = false
       }
     }
 
     onMount(() => {
-      
       visible = true;
+      const load = async ({ fetch }) => {
+
+     const fetchMsgData = async () => {
+        const msgRes = await fetch(`${publicUrl}/items/msg?sort=-date_created`)
+        const msgData = await msgRes.json()
+        return msgData.data
+    }
+
+
+    return {
+        messages: fetchMsgData()
+        
+    }
+}
+
     });
   
 </script>
@@ -46,6 +60,15 @@
 
 
 {#if visible}
+
+{#if loading}
+<div class="toast toast-top toast-end">
+  <div class="alert alert-info">
+    <div>
+      <span>sending..</span>
+    </div>
+  </div>
+{/if}
 
 <div class="hero h-1/2 pt-25 bg-base-200">
     <div in:fly="{{ y:-100, duration: 1200 }}" class="hero-content text-center">
