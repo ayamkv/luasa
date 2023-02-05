@@ -6,7 +6,7 @@
     import { fly, fade } from 'svelte/transition';	
     let visible = false;
     export let data;
-//    $: ({ messages } = data);
+    $: ({ messages } = data);
 //    const { messages } = data;
     console.log(data)
     // function dateFormat(text) {
@@ -35,9 +35,7 @@ let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 
     onMount(async () => {
       visible = true;
-      const res = await fetch(`${publicUrl}/items/msg?sort=-date_created`);
-      messages = await res.json();
-
+      
     });
   
 </script>
