@@ -18,6 +18,14 @@
     //     }
 
     // }
+    
+    const addMessage = () => {
+      
+      return async ({ update }) => {
+        await update();
+        await invalidateAll();
+      }
+    }
 
     onMount(() => {
       visible = true;
@@ -46,7 +54,7 @@
         
         <div class="flex flex-col justify-center items-center bg-base-200 pt-0">
 
-            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance>
+            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance={addMessage}>
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>

@@ -1,5 +1,5 @@
 
-import { fail } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 // import { invalidate } from '$app/navigation'
 import { directus } from '../lib/server/directus';
 
@@ -28,7 +28,7 @@ export const actions = {
       
       sendMessage(to, msg);
 //      invalidate(() => true);
-
+      throw redirect(303, '/')
       return {
         success: true
       }
