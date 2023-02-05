@@ -1,6 +1,6 @@
 
 import { fail } from '@sveltejs/kit'
-import { invalidate } from '$app/navigation'
+// import { invalidate } from '$app/navigation'
 import { directus } from '../lib/server/directus';
 
 const msg = directus.items('msg');
@@ -27,7 +27,7 @@ export const actions = {
       }
       
       sendMessage(to, msg);
-      invalidate(() => true);
+//      invalidate(() => true);
 
       return {
         success: true
