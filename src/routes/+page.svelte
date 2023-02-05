@@ -26,6 +26,7 @@
         
         loading = false
         await update({ reset: true });
+        invalidateAll();
       }
     }
 
