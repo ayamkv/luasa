@@ -6,7 +6,8 @@
     import { fly, fade } from 'svelte/transition';	
     let visible = false;
     export let data;
-    const { messages } = data;
+    $: ({ messages } = data);
+//    const { messages } = data;
     console.log(data)
     // function dateFormat(text) {
     //     dateText = String(text)
@@ -23,16 +24,18 @@
     const addMessage = () => {
       loading = true
       return async ({ update }) => {
-        
-        loading = false
         await update({ reset: true });
+        loading = false
+       
         invalidateAll();
       }
     }
 
     onMount(() => {
+      
       visible = true;
     });
+  
 </script>
 
 <svelte:head>
