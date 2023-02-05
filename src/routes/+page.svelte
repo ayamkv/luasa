@@ -33,7 +33,7 @@
 let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 
 
-    onMount(async () => {
+    onMount(() => {
       visible = true;
       
     });
