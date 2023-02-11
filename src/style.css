@@ -7,3 +7,8 @@
     font-family: 'Poppins', sans-serif;
     }
 }
+
+:global(.wrapper) {
+    position: relative;
+    z-index: 99;
+  }
