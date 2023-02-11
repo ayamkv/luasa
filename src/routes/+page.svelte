@@ -3,25 +3,34 @@
     import Date from "./Date.svelte";
     import 'iconify-icon';
     import { onMount } from "svelte";
-    import { fly, fade } from 'svelte/transition';	
+    import { fly, fade } from 'svelte/transition';
+    import ColorPicker from 'svelte-awesome-color-picker';
+    
+    let hex = "#0e1526";
     let visible = false;
     export let data;
-    const { messages } = data;
-    console.log(data)
-    // function dateFormat(text) {
-    //     dateText = String(text)
-    //     dateReplace = dateText.replace('T',' ')
-    //     date = String(dateReplace.slice(0, -1));
+    $: ({ messages } = data);
+//    const { messages } = data;
+    console.log('test')
 
-    //     return {
-    //         date
-    //     }
-
-    // }
+    let loading = false
+    // use later
+  //  const addMessage = () => {
+      
+ //     loading = true
+      
+ //     return async ({ update }) => {
+//        await update({ reset: true });
+ //       loading = false
+//        invalidateAll();
+//      }
+ //   }
 
     onMount(() => {
       visible = true;
+      
     });
+  
 </script>
 
 <svelte:head>
@@ -30,7 +39,7 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </svelte:head>
 
-
+<!-- <button on:click={() => messagesRes.load()}>load user</button> -->
 {#if visible}
 
 <div class="hero h-1/2 pt-25 bg-base-200">
@@ -54,40 +63,70 @@
                 <label class="label" for="textarea">
                     <span class="label-text italic my-0">Message : </span>
                   </label>
-                <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="say it.." name="message" cols="5" rows="3" maxlength="150" required></textarea>
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAACVH5V0v4_SuNes" data-callback="javascriptCallback" theme="dark"></div>
+                <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="your message..." name="message" cols="5" rows="3" maxlength="150" required></textarea>
 
+                <p>{hex}</p>
+                <div class="flex flex-col w-full border-opacity-50">
+                  <div class="grid h-16 card bg-base-100 rounded-box place-items-center" style="border: 2px solid {hex}; z-index: 9999;">
+                    <ColorPicker bind:hex isAlpha={false}/>
+                  </div>
+
+                </div>
+
+                <input type="hidden" value="{hex}" name="color" hidden>
+               
+                <!-- <label for="my-modal-6" class="btn">Color 🎉</label>
+
+                <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+                <div class="modal modal-bottom sm:modal-middle">
+                  <div class="modal-box">
+                    <h3 class="font-bold text-lg">Select Color</h3>
+                    <ColorPicker bind:hex />
+                    <div class="modal-action">
+                      <label for="my-modal-6" class="btn">Confirm</label>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAACVH5V0v4_SuNes" data-callback="javascriptCallback" theme="dark"></div>
+               
+               
                 <button type="submit" class="btn btn-primary w-64 rounded-full mx-auto shadow-xl my-2 gap-2" >
                     Submit
-                    
+                    {#if loading}
+                    <iconify-icon icon="line-md:uploading-loop"></iconify-icon>
+                    {/if}
+                    {#if !loading}
                     <iconify-icon icon="ph:paper-plane-tilt-bold"></iconify-icon>
+                    {/if}
                     
                 </button>
+                
             </form>
         </div>
       </div>
     </div>
   </div>
 
-<div in:fly="{{ y: 200, duration: 600}}" class="flex flex-col justify-center items-center my-5 mx-2">
-    <h1 class="text-xl font-bold mt-3 mb-10 text-base-content drop-shadow-sm"><iconify-icon icon="fluent-emoji:envelope-with-arrow"></iconify-icon> Suara Rakyat</h1>
+<div in:fly="{{ y: 200, duration: 600}}" class="flex flex-col justify-center items-center my-5 mx-2 ">
+    <h1 class="text-xl font-bold mt-3 mb-10 text-base-content drop-shadow-sm -z-50"><iconify-icon icon="fluent-emoji:envelope-with-arrow"></iconify-icon> Suara Rakyat</h1>
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
-        
-{#each messages as msg, i}
-    <div in:fly="{{ y: 200, duration: 2000, delay: 80 * i }}" id="{msg.id}" class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]">
-        <div class="card-body break-words whitespace-pre-wrap px-6 pt-5 pb-5">
+<!-- {#if $messages} -->
+  {#each messages as msg, i(msg.id)}
+      <div in:fly="{{ y: 200, duration: 2000, delay: 80 * i }}" id="{msg.id}" class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color}">
+          <div class="card-body break-words whitespace-pre-wrap px-6 pt-5 pb-5">
 
+          
+          <h3 class="card-title rounded-md text-sm font-semibold italic"> to : <span class="text-sm text-center">{msg.to}</span></h3>
+          <p class="text-sm">{msg.messages}</p>
+          <div class="card-actions justify-end mt-2">
+            <a href="/#" on:click={() => alert('share feature, coming soon')} class="btn btn-xs"><iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon> </a>
+              <Date name={msg.date_created} />
         
-        <h3 class="card-title rounded-md text-sm font-semibold italic"> to : <span class="text-sm text-center">{msg.to}</span></h3>
-        <p class="text-sm">{msg.messages}</p>
-        <div class="card-actions justify-end mt-2">
-          <a href="/#" on:click={() => alert('share feature, coming soon')} class="btn btn-xs"><iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon> </a>
-            <Date name={msg.date_created} />
-       
-          </div>
-     </div>
-    </div>
-{/each}
+            </div>
+      </div>
+      </div>
+  {/each}
+<!-- {/if} -->
 </div>
 </div>
 
