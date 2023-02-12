@@ -71,7 +71,7 @@
                 <p>{hex}</p>
                 <div class="flex flex-col w-full border-opacity-50">
                   <div class="grid h-16 card bg-base-100 rounded-box place-items-center" style="border: 2px solid {hex}; z-index: 9999;">
-                    <ColorPicker bind:hex isAlpha={false} canChangeMode={false} />
+                    <ColorPicker bind:hex isAlpha={false} canChangeMode={false} isTextInput={false}/>
                   </div>
 
                 </div>
