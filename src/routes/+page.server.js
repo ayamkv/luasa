@@ -1,19 +1,19 @@
 
 import { fail, redirect } from '@sveltejs/kit'
 // import { invalidate } from '$app/navigation'
-import { directus } from '../lib/server/directus';
+// import { directus } from '../lib/server/directus';
 
-const msg = directus.items('msg');
+// const msg = directus.items('msg');
 
-async function sendMessage(to, message, color) {
+//async function sendMessage(to, message, color) {
 
-    await msg.createOne({
-        to: to,
-        messages: message,
-        color: color
-    });
+//    await msg.createOne({
+//        to: to,
+//        messages: message,
+//        color: color
+//    });
 
-  };
+//  };
 
 
 export const actions = {
@@ -27,7 +27,7 @@ export const actions = {
         return fail(400, { msg, missing: true })
       }
       
-      sendMessage(to, msg, color);
+,//      sendMessage(to, msg, color);
 //      invalidate(() => true);
       // throw redirect(303, '/')
       return {
