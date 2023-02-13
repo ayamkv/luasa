@@ -27,7 +27,7 @@ export const actions = {
         return fail(400, { msg, missing: true })
       }
       
-,//      sendMessage(to, msg, color);
+//      sendMessage(to, msg, color);
 //      invalidate(() => true);
       // throw redirect(303, '/')
       return {
