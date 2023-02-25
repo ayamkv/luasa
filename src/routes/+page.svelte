@@ -46,7 +46,7 @@
 {#if visible}
 
 <div class="hero h-1/2 pt-25 bg-base-200">
-    <div in:fly="{{ y:-100, duration: 1200 }}" class="hero-content text-center">
+    <div class="hero-content text-center">
       <div class="max-w-md mt-10 mb-1  ">
         <h1 class="text-5xl font-bold text-base-content drop-shadow-xl hover:text-primary hover:scale-110 transition-all ">
           <iconify-icon icon="fluent-emoji:ghost" class="translate-y-2 hover:scale-125 transition-all" ></iconify-icon>
@@ -62,14 +62,14 @@
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>
-                <input type="text" class="input input-bordered input-sm w-full max-w-xs shadow-md" name="to" label="to" placeholder="ex: crush" required>
+                <input type="text" class="input input-bordered input-sm w-full max-w-xs shadow-md" name="to" label="to" placeholder="heisenberg" required>
                 <label class="label" for="textarea">
                     <span class="label-text italic my-0">Message : </span>
                   </label>
                 <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="your message..." name="message" cols="5" rows="3" maxlength="150" required></textarea>
 
-                <p>{hex}</p>
-                <div class="flex flex-col w-full border-opacity-50 shadow-md">
+                <p class="text-sm">{hex}</p>
+                <div class="flex flex-col w-full shadow-md">
                   <div class="grid h-16 card bg-base-100 rounded-box place-items-center" style="border: 2px solid {hex}; z-index: 9999;">
                     <ColorPicker bind:hex isAlpha={false} isTextInput={false} canChangeMode={false}/>
                   </div>
@@ -116,14 +116,16 @@
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
 <!-- {#if $messages} -->
   {#each messages as msg, i(msg.id)}
-      <div in:fly="{{ y: 200, duration: 2000, delay: 80 * i }}" id="{msg.id}" class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color}">
+      <div in:fly="{{ y: 200, duration: 1000, delay: 80 * i }}" id="{msg.id}" out:fade class="card w-60 bg-base-300 shadow-xl hover:shadow-sm hover:scale-[1.03] transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color};">
           <div class="card-body break-words whitespace-pre-wrap px-6 pt-5 pb-5">
 
           
           <h3 class="card-title rounded-md text-sm font-semibold italic"> to : <span class="text-sm text-center">{msg.to}</span></h3>
           <p class="text-sm">{msg.messages}</p>
           <div class="card-actions justify-end mt-2">
-            <a href="/msg/{msg.id}" class="btn btn-xs"><iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon> </a>
+            <a href="/msg/{msg.id}" class="btn btn-xs outline outline-0 hover:outline-1 transition-all">
+              <iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon>
+             </a>
               <Date name={msg.date_created} />
         
             </div>
@@ -137,9 +139,9 @@
 <footer class="footer footer-center p-6 bg-base-100 text-base-content rounded gap-4">
     
       <div class="grid grid-flow-col gap-4 mt-0 py-0 text-2xl">
-      <a href="https://github.com/ayamkv" class="link leading">
+      <a href="https://github.com/ayamkv" class="link leading hover:-translate-y-1 hover:text-cyan-300 transition-all">
         <iconify-icon icon="lucide:github"></iconify-icon></a>
-      <a href="https://instagram.com/raaharja" class="link link-hover gap-2">
+      <a href="https://instagram.com/raaharja" class="link link-hover gap-2 hover:-translate-y-1 hover:text-cyan-300 transition-all">
         <iconify-icon icon="lucide:instagram"></iconify-icon>
       </a>
     </div>

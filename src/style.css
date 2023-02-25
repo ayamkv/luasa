@@ -4,6 +4,16 @@
 
 @layer base {
     html {
+    scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
     }
+    ::-moz-selection { /* Code for Firefox */
+        color: black;
+        background: cyan;
+      }
+      
+      ::selection {
+        color: black;
+        background: cyan;
+      }
 }
