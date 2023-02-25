@@ -1,11 +1,13 @@
-<script>
+<script>  
+    // import { crossfade } from './crossfade';
     import { enhance } from '$app/forms';
     import Date from "./Date.svelte";
     import 'iconify-icon';
-    import { onMount } from "svelte";
+    import { onMount, tick } from "svelte";
     import { fly, fade } from 'svelte/transition';
     import ColorPicker from 'svelte-awesome-color-picker';
     
+    // const [send, receive] = crossfade
     let hex = "#0e1526";
     let visible = false;
     export let data;
@@ -15,17 +17,15 @@
 
     let loading = false
     // use later
-  //  const addMessage = () => {
-      
- //     loading = true
-      
- //     return async ({ update }) => {
-//        await update({ reset: true });
- //       loading = false
-//        invalidateAll();
-//      }
- //   }
-
+    const addMessage = () => { 
+      loading = true
+      return async ({ update }) => {
+        await update({ reset: true });
+        loading = false
+        await tick();
+        invalidateAll();
+     }
+   };
     onMount(() => {
       visible = true;
       
@@ -50,15 +50,15 @@
       <div class="max-w-md mt-10 mb-1  ">
         <h1 class="text-5xl font-bold text-base-content drop-shadow-xl hover:text-primary hover:scale-110 transition-all ">
           <iconify-icon icon="fluent-emoji:ghost" class="translate-y-2 hover:scale-125 transition-all" ></iconify-icon>
-          Luasa</h1>
+          Confess</h1>
         <p class="pt-6 pb-0 mb-0 text-sm">
-            sent the unsent. <br> 
-            💯 privacy. no bullshit.
+            kirim salam mu!<br> 
+            💯 privacy. 
         </p>
         
         <div class="flex flex-col justify-center items-center bg-base-200 pt-0">
 
-            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance>
+            <form method="POST" action="?/sendMsg" class="card card-body" style="max-width: 400px" use:enhance={addMessage}>
                 <label class="label" for="input">
                     <span class="label-text italic my-0">To :</span>
                   </label>
@@ -69,9 +69,9 @@
                 <textarea class="textarea textarea-bordered shadow-xl" id="message" placeholder="your message..." name="message" cols="5" rows="3" maxlength="150" required></textarea>
 
                 <p>{hex}</p>
-                <div class="flex flex-col w-full border-opacity-50">
+                <div class="flex flex-col w-full border-opacity-50 shadow-md">
                   <div class="grid h-16 card bg-base-100 rounded-box place-items-center" style="border: 2px solid {hex}; z-index: 9999;">
-                    <ColorPicker bind:hex isAlpha={false}/>
+                    <ColorPicker bind:hex isAlpha={false} isTextInput={false} canChangeMode={false}/>
                   </div>
 
                 </div>
@@ -93,7 +93,7 @@
                 <div class="cf-turnstile" data-sitekey="0x4AAAAAAACVH5V0v4_SuNes" data-callback="javascriptCallback" theme="dark"></div>
                
                
-                <button type="submit" class="btn btn-primary w-64 rounded-full mx-auto shadow-xl my-2 gap-2" >
+                <button type="submit" class="btn btn-primary w-72 mx-auto shadow-xl my-2 gap-2 rounded-lg" >
                     Submit
                     {#if loading}
                     <iconify-icon icon="line-md:uploading-loop"></iconify-icon>
@@ -110,8 +110,9 @@
     </div>
   </div>
 
-<div in:fly="{{ y: 200, duration: 600}}" class="flex flex-col justify-center items-center my-5 mx-2 ">
-    <h1 class="text-xl font-bold mt-3 mb-10 text-base-content drop-shadow-sm -z-50"><iconify-icon icon="fluent-emoji:envelope-with-arrow"></iconify-icon> Suara Rakyat</h1>
+<div in:fly="{{ y: 200, duration: 600}}" out:fade class="flex flex-col justify-center items-center my-5 mx-2 ">
+    <h1 class="text-xl font-bold mt-3 text-base-content drop-shadow-sm -z-50 mb-2"><iconify-icon icon="fluent-emoji:envelope-with-arrow"></iconify-icon> Suara Rakyat</h1>
+    <p class="mb-10 text-sm">biasakan refresh</p>
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
 <!-- {#if $messages} -->
   {#each messages as msg, i(msg.id)}
@@ -122,7 +123,7 @@
           <h3 class="card-title rounded-md text-sm font-semibold italic"> to : <span class="text-sm text-center">{msg.to}</span></h3>
           <p class="text-sm">{msg.messages}</p>
           <div class="card-actions justify-end mt-2">
-            <a href="/#" on:click={() => alert('share feature, coming soon')} class="btn btn-xs"><iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon> </a>
+            <a href="/msg/{msg.id}" class="btn btn-xs"><iconify-icon icon="material-symbols:ios-share-rounded"></iconify-icon> </a>
               <Date name={msg.date_created} />
         
             </div>
