@@ -109,7 +109,7 @@
 
 <div in:fly="{{ y: 200, duration: 600}}" out:fade class="flex flex-col justify-center items-center my-5 mx-2 ">
     <h1 class="text-xl font-bold mt-3 text-base-content drop-shadow-sm -z-50 mb-2"><iconify-icon icon="fluent-emoji:envelope-with-arrow"></iconify-icon> Suara Rakyat</h1>
-    <p class="mb-10 text-sm">biasakan refresh, dibutuhkan waktu beberapa detik (~1s) untuk pesan mu muncul.</p>
+    <p class="mb-10 text-xs">biasakan refresh.<br> dibutuhkan waktu beberapa detik (~1s) untuk pesan mu muncul.</p>
     <div class="flex flex-wrap justify-center items-start grid-cols-4 gap-5 mb-10 overflow">
 <!-- {#if $messages} -->
   {#each messages as msg, i(msg.id)}
