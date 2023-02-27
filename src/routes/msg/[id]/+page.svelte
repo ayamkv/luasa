@@ -30,7 +30,7 @@
 <div class="wrapper" id="wrapper">
 
      <div class="flex h-[85vh] justify-center items-center shadow-md">
-     <div id="{msg.id}" class="card w-72 h-1/4 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color}" >
+     <div id="{msg.id}" class="card w-72 bg-base-300 shadow-xl hover:shadow-sm hover:scale-105 transition-all border-solid border-2 border-neutral border-[{msg.color}]" style="border: 2px solid {msg.color}" >
           <div class="card-body break-words whitespace-pre-wrap px-6 pt-5 pb-5">
 
           
